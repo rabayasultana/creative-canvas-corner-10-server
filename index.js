@@ -31,6 +31,7 @@ async function run() {
     await client.connect();
 
     const craftItemCollection = client.db('craftItemDB').collection('craftItem');
+    const userCollection = client.db('craftItemDB').collection('user');
 
     app.get('/craftItem', async (req, res) => {
       const cursor = craftItemCollection.find();
@@ -75,6 +76,14 @@ async function run() {
     res.send(result);
 })
 
+
+// User related Api
+app.post('/user', async (req, res) => {
+  const user = req.body;
+  console.log(user);
+  const result = await userCollection.insertOne(user);
+  res.send(result);
+})
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
