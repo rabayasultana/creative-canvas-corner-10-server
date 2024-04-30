@@ -30,6 +30,7 @@ async function run() {
 
     const craftItemCollection = client.db('craftItemDB').collection('craftItem');
     const userCollection = client.db('craftItemDB').collection('user');
+    const categoryCollection = client.db('craftItemDB').collection('category');
 
     app.get('/craftItem', async (req, res) => {
       const cursor = craftItemCollection.find();
@@ -49,6 +50,22 @@ async function run() {
       console.log(newCraftItem);
       const result = await craftItemCollection.insertOne(newCraftItem);
       res.send(result);
+  })
+
+  // category
+
+  app.get('/craftItem', async (req, res) => {
+    const cursor = categoryCollection.find();
+    const result = await cursor.toArray();
+    res.send(result);
+})
+
+
+  app.post('/category', async (req, res) => {
+    const newCategory = req.body;
+    console.log(newCategory);
+    const result = await categoryCollection.insertOne(newCategory);
+    res.send(result);
   })
 
   app.put('/craftItem/:id', async(req, res) => {
@@ -75,7 +92,13 @@ async function run() {
 })
 
 
-
+// User related Api
+app.post('/user', async (req, res) => {
+  const user = req.body;
+  console.log(user);
+  const result = await userCollection.insertOne(user);
+  res.send(result);
+})
 
 app.get('/myCraftList/:email', async(req, res) => {
 
