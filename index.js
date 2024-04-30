@@ -16,7 +16,6 @@ console.log(uri)
 
 
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -27,7 +26,6 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
 
     const craftItemCollection = client.db('craftItemDB').collection('craftItem');
@@ -116,6 +114,9 @@ app.get('/', (req, res) => {
     res.send('Coffee making server is running');
 })
 
+app.listen(port, () => {
+    console.log(`Coffee server is running on port : ${port}`)
+})
 app.listen(port, () => {
     console.log(`Coffee server is running on port : ${port}`)
 })
