@@ -75,13 +75,7 @@ async function run() {
 })
 
 
-// User related Api
-app.post('/user', async (req, res) => {
-  const user = req.body;
-  console.log(user);
-  const result = await userCollection.insertOne(user);
-  res.send(result);
-})
+
 
 app.get('/myCraftList/:email', async(req, res) => {
 
@@ -99,12 +93,10 @@ app.delete('/delete/:id', async(req, res) => {
   res.send(result);
 })
 
-    // Send a ping to confirm a successful connection
+
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
   } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
   }
 }
 run().catch(console.dir);
@@ -114,9 +106,6 @@ app.get('/', (req, res) => {
     res.send('Coffee making server is running');
 })
 
-app.listen(port, () => {
-    console.log(`Coffee server is running on port : ${port}`)
-})
 app.listen(port, () => {
     console.log(`Coffee server is running on port : ${port}`)
 })
