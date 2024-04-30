@@ -91,6 +91,12 @@ app.get('/myCraftList/:email', async(req, res) => {
       const result = await cursor.toArray();
       res.send(result);
 })
+app.get('/craftItemDetails/:id', async(req, res) => {
+
+  const query = {_id:req.params.id};
+      const result = await craftItemCollection.findOne(query);
+      res.send(result);
+})
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
